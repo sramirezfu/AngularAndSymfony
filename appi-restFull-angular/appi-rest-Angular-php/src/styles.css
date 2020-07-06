@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+.bg-blue{
+    background-color: #005eb8;
+}
+.border-blueO{
+    border: 1px solid #005eb8;
+}
+.btn-blue{
+    border: 1px solid #005eb8 !important;
+    background-color: #005eb8 !important;
+}

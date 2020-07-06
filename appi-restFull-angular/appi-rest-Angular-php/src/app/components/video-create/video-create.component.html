@@ -1,0 +1,48 @@
+<div class="pt-5">    
+    <h3 class="col-md-6 mx-auto mb-5" *ngIf="is_exist == null">Craer nueva articulo</h3>
+    <h3 class="col-md-6 mx-auto mb-5" *ngIf="is_exist == true">Modifica tu articulo</h3>
+    <div class="content-form-register col-md-6 bg-light p-3 mx-auto mt-4">
+        <div class="alert alert-success" *ngIf="status == 'success'">
+            Articulo creado correctamente.
+        </div>
+        <div class="alert alert-danger" *ngIf="status == 'error'">
+            EL articulo no se ha creado.
+        </div>
+        <form #postCreate="ngForm" (submit)="onSubmit(postCreate)" ngNativeValidate>
+            <fieldset>
+                <legend class="font-weight-bold">Crea un nuevo post de tus categorias</legend>
+                    <div class="form-group">
+                        <label for="category_id">Categoria</label>
+                        <select name="category_id" #category="ngModel" [(ngModel)]="video.category_id" class="form-control">     
+                            <option selected disabled>Selecciona una categoria</option>                       
+                            <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group pt-3">
+                        <label for="title">Titulo</label>
+                        <input type="text" class="form-control" required name="title"
+                        #title="ngModel" [(ngModel)]="video.title" minlength="7" pattern="[a-zA-Z\s]+">    
+                        <small *ngIf="!title.valid && title.touched" class="invalid-feedback d-block">
+                            El titulo no es valido
+                        </small>                    
+                    </div>    
+                    <div class="form-group">
+                        <label for="content">Descripción</label>
+                        <textarea [froalaEditor] type="text" class="form-control" id="content" name="content"
+                        #content="ngModel" [(ngModel)]="video.content" pattern="[a-zA-Z\s]+" required></textarea>
+               
+                    </div>     
+                    <div class="form-group">
+                        <label for="url">Url</label>  
+                        <input type="text" name="url" #url="ngModel" [(ngModel)]="video.url" required class="form-control">                        
+                        <span *ngIf="!url.valid && title.touched" class="invalid-feedback d-block">
+                            la url es requerida.
+                        </span>
+                    </div>                               
+                    <div class="text-center px-5 pt-4">
+                        <input type="submit" class="btn btn-primary text-white w-100" value="Guardar">
+                    </div>                    
+            </fieldset>
+        </form>
+    </div>
+</div>

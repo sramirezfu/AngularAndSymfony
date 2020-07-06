@@ -1,0 +1,51 @@
+<div class="bg-light">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" routerLink="/">
+          <img class="pr-1"src="assets/images/LogoHeader.jpg" width="40" height="40" alt="">VideoHappy
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" routerLink="/inicio/1">Inicio<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active"  *ngFor="let category of categories">
+              <a class="nav-link" routerLink="detalle/categoria/{{category.id}}/1" >{{category.name}}<span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto" *ngIf="!identity">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login" routerLinkActive="router-link-active">Login</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/registrarse" routerLinkActive="router-link-active">Registrarse</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav" *ngIf="identity">     
+            <li  class="nav-item">
+              <div class="avatar-mask">
+                <img src="" style="width: 40px; margin-bottom: 20px;" alt="">
+              </div>
+            </li>      
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-tie mr-1"></i>{{ identity.name + ' ' + identity.surname}}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/crear/video">Crear articulo</a>
+                <a class="dropdown-item" *ngIf="identity.role == 'ROLE_ADMIN'" routerLink="/crear/categoria">Crear categoria</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" routerLink="/perfil/usuario/{{identity.sub}}/1">Mi perfil</a>
+                <a class="dropdown-item" routerLink="/editar/usuario">Ajustes</a>
+                <a class="dropdown-item" routerLink="/logout/1">Salir</a>
+              </div>
+            </li>         
+          </ul>      
+        </div>
+      </nav>
+    </div>
+</div>

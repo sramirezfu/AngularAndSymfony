@@ -1,0 +1,25 @@
+<div class="container my-5 py-3" *ngIf="!video">
+    <h3 class="mb-3">Cargando...</h3>
+</div>
+<div class="container mb-5" style="height: 315px;" *ngIf="video">    
+    <div class="mt-5">        
+        <div class="w-50 float-left"  *ngIf="video.url">        
+            <p>
+                <iframe width="560" height="315" [src]="getVideoIframe(video.url)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </p>                            
+        </div>
+        <div class="w-50 float-left" *ngIf="!video.url">
+            <img src="assets/images/video-default.png" class="card-img-top" alt="...">
+        </div>            
+        <div class="w-50 float-left">
+            <div style="height: 290px;">
+                <h1 class="ml-3">{{video.title}}</h1>
+                <p class="ml-3 mt-4" [innerHtml]="video.content">{{video.content}}</p>
+            </div>
+            <div class="ml-3 w-100 ">
+                <a routerLink="/perfil/usuario/{{video.user.id}}/1" class="w-50 float-left text-info">{{video.user.name + ' ' + video.user.surname | uppercase}}</a>
+                <p class="w-50 float-left">{{video.category.name | uppercase}}</p>
+            </div>           
+        </div>
+    </div>
+</div>

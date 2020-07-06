@@ -1,0 +1,79 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+# Rutas del controllador de usuarios.
+
+user:
+    path: /usuario/{id}
+    controller: App\Controller\UserController::index
+
+register:
+    path: /registrarse
+    controller: App\Controller\UserController::register
+
+login:
+    path: /login
+    controller: App\Controller\UserController::login
+
+update:
+    path: /editar/usuario
+    controller: App\Controller\UserController::update
+
+# Rutas del controllador de videos.
+video:
+    path: /video
+    controller: App\Controller\VideoController::index
+
+create:
+    path: /crear/video
+    controller: App\Controller\VideoController::create
+
+getVideosUser:
+    path: /usuario/videos/{id}
+    controller: App\Controller\VideoController::getVideosByUser
+
+getVideosCategory:
+    path: /category/videos/{id}
+    controller: App\Controller\VideoController::getVideosByCategory
+
+getVideo:
+    path: /video/{id}
+    controller: App\Controller\VideoController::getOneVideo
+
+getVideos:
+    path: /videos
+    controller: App\Controller\VideoController::getAllVideos
+
+delete:
+    path: /eliminar/video/{id}
+    controller: App\Controller\VideoController::destroy
+
+updateVideo:
+    path: /actualizar/video/{id}
+    controller: App\Controller\VideoController::update
+
+# Rutas del controllador de categorias.
+category:
+    path: /category
+    controller: App\Controller\CategoryController::index
+
+getCategory:
+    path: /category/{id}
+    controller: App\Controller\CategoryController::getCategory
+
+getCategories:
+  path: /categories
+  controller: App\Controller\CategoryController::getCategories
+
+createCategory:
+  path: /create/category
+  controller: App\Controller\CategoryController::create
+
+updateCategory:
+  path: /update/category/{id}
+  controller: App\Controller\CategoryController::update
+
+destroyCategory:
+  path: /delete/category/{id}
+  controller: App\Controller\CategoryController::destroy

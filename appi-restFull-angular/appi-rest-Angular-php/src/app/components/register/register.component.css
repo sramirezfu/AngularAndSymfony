@@ -1,0 +1,10 @@
+.content-form-register{
+    min-height: 475px;
+}
+.btn-register{
+    background-color: #4db2dd;
+    border-color: #4db2de;
+}
+.btn-register:hover{
+    background-color: #3089af;
+}

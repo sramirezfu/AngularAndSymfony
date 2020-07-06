@@ -1,0 +1,37 @@
+<div class="pt-5">
+    <div class="cotainer">
+        <div class="col-md-6 mx-auto border px-0 rounded-lg bg-light">            
+            <div class="rounded-lg">
+                <img class="w-100  rounded-lg-top" style="height: 255px;" src="assets/images/register.jpg" alt="">
+            </div>
+            <div class="col mx-auto pt-4 ">        
+                <form class="" #loginForm="ngForm" (submit)="onSubmit(loginForm)" ngNativeValidate>
+                    <div class="form-group row px-5">
+                        <label for="email" class="col-sm-2 col-form-label">Email</label>
+                        <div class="col-sm-10">
+                        <input type="email" class="form-control inputPassword" name="email" placeholder="Ingresa tu Usuario" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" #email="ngModel" [(ngModel)]="user.email">
+                        <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+                            El email no es valido
+                        </small>  
+                        </div>
+                    </div>
+                    <div class="form-group row px-5">
+                        <label for="password" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                        <input type="password" class="form-control inputPassword" name="password" placeholder="Ingresa tu password" #password="ngModel" [(ngModel)]="user.password">
+                        <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">
+                            Contraseña invalidad
+                        </small> 
+                        </div>
+                    </div>
+                    <div class="text-center px-5 mt-5 mb-4">
+                        <input type="submit" class="btn btn-blue text-white w-100" value="Login">
+                    </div>                       
+                </form>
+                <div class="alert alert-danger text-center" *ngIf="status == 'error'">
+                    El usuario no se ha identificado correctamente, vuelve a intentarlo.
+                </div>  
+            </div>         
+        </div>
+    </div>
+</div>

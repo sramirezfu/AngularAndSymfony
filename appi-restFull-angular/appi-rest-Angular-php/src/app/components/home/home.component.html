@@ -1,0 +1,68 @@
+<div class="container my-5 py-3" *ngIf="!videos">
+  <h3 class="my-5">Cargando...</h3>
+</div>
+<div class="container mt-5 pt-3" *ngIf="videos">
+    <h3 class="mb-3">Los mejores articulos en tecnologia</h3>
+    <div class="card-columns mt-5">
+        <div class="card w-100" *ngFor="let video of videos">
+          <div class="w-100 content-img" *ngIf="video.url">
+            <img src="{{getThumb(video.url,'hqdefault')}}" class="card-img-top" alt="...">
+          </div>
+          <div class="w-100 content-img" *ngIf="!video.url">
+            <img src="assets/images/video-default.png" class="card-img-top" alt="...">
+          </div>                                 
+          <div class="card-body content-info">
+            <h5 class="card-title">{{ video.title }}</h5>            
+            <p class="card-text"><small class="text-muted"></small></p>
+            <div class="post-buttons  ml-3">
+                <a routerLink="/video/{{video.id}}" class="btn btn-blue text-light mr-4">Leer</a>
+                <span *ngIf="identity && identity.sub == video.user.id">
+                    <a routerLink="/editar/video/{{video.id}}" class="btn btn-warning mr-4">Editar</a>
+                    <a type="button" class="btn btn-danger mr-4" data-toggle="modal"  [attr.data-target]="'#mymodal'+video.id">Borrar</a>                    
+                </span>
+                <!-- Button trigger modal -->
+               
+                <!-- Modal -->
+                <div class="modal fade" id="{{'mymodal'+video.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Seguro desea eliminar?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                      {{video.title}}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <a (click)="deletePost(video.id)" data-dismiss="modal" class="btn btn-danger mr-4">Borrar</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>   
+    </div>
+    <nav aria-label="Page navigation example" class="mt-4">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" routerLink="/inicio/{{prev_page}}" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            <span class="sr-only">Previous</span>
+          </a>
+        </li>
+        <li class="page-item" *ngFor="let page of number_pages">
+          <a class="page-link" routerLink="/inicio/{{page}}">{{page}}</a>
+        </li>       
+        <li class="page-item">
+          <a class="page-link" routerLink="/inicio/{{next_page}}" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+</div>

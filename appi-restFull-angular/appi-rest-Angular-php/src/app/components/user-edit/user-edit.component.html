@@ -1,0 +1,60 @@
+<div class="pt-5">    
+    <div class="content-form-register col-md-6 bg-light p-3 mx-auto">
+        <!-- <h4>{{title}}</h4> -->
+        <div class="alert alert-success" *ngIf="status == 'success'">
+            Datos actualizados correctamente.
+        </div>
+        <div class="alert alert-danger" *ngIf="status == 'error'">
+            El usuario no se ha creado correctament vuelve a intentarlo.
+        </div>
+        <form #userEditForm="ngForm" (submit)="onSubmit(userEditForm)" ngNativeValidate>
+            <fieldset>
+                <legend class="font-weight-bold">Actualiza tus datos</legend>
+                <div class="form-group pt-3">
+                    <label for="name">Nombres</label>
+                    <input type="text" class="form-control" required name="name" pattern="[a-zA-Z]+"
+                    #name="ngModel" [(ngModel)]="user.name" minlength="2">    
+                    <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+                        El nombre no es valido
+                    </small>                    
+                </div>
+                <div class="form-group">
+                    <label for="surnameRegister">Apelidos</label>
+                    <input type="text" class="form-control" id="surname" name="surname" required pattern="[a-zA-Z]+"
+                    #surname="ngModel" [(ngModel)]="user.surname">
+                    <small *ngIf="!surname.valid && surname.touched" class="invalid-feedback d-block">
+                        Apellido invalido 
+                    </small>  
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    #email="ngModel" [(ngModel)]="user.email">
+                    <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+                        El email no es valido
+                    </small>  
+                </div>         
+                <div class="form-group">
+                    <label for="description">Biografia</label>
+                    <textarea [froalaEditor] type="text" class="form-control" name="description"
+                    #description="ngModel" [innerHtml]="user.description" [(ngModel)]="user.description"></textarea>
+                </div>       
+                <div class="form-group">
+                    <label for="image">Foto</label>
+                    <div *ngIf="identity && identity.image">
+                        <img src="{{url + 'user/avatar/' + identity.image}}" style="width: 200px; margin-bottom: 20px;" alt="">
+                    </div>
+
+                    <angular-file-uploader 
+                        [config]="afuConfig"
+                        
+                        (ApiResponse)="avatarUpload($event)">
+                    </angular-file-uploader>
+                </div>
+                <div class="text-center px-5 pt-4">
+                    <input type="submit" class="btn btn-blue text-white w-100" value="Actualizar">
+                </div>                    
+            </fieldset>
+        </form>
+    </div>
+</div>
